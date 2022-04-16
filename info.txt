@@ -1,0 +1,59 @@
+Terre :
+    
+    Masse : 5,972 × 10^24 kg
+    Rayon : 6 371 km
+    Distance du Soleil : 149,6 millions km
+    Color : Bleu
+
+Lune:
+
+    Masse : 7,6.10^22kg
+    Rayon : 1 737,4 km
+    Color : Blanc
+
+
+Mars :
+    Masse : 6,39 × 10^23 kg
+    Rayon : 3 389,5 km
+    Distance du Soleil : 227,9 millions km
+    Color : Rouge
+
+Mercure :
+    Masse : 3,285 × 10^23 kg
+    Rayon : 2 439,7 km
+    Distance du Soleil : 57,91 millions km
+    Color : Gris
+
+Venus:
+    Masse : 4,867 × 10^24 kg
+    Rayon : 6 051,8 km
+    Distance du Soleil : 108,2 millions km
+    Color : Rouge_Orange
+
+Jupiter :
+    Masse : 1,898 × 10^27 kg
+    Rayon : 69 911 km
+    Distance du Soleil : 778,5 millions km
+    Color :
+
+
+
+Soleil:
+    
+    Masse : 1,989 × 10^30 kg
+    Rayon : 696 340 km
+    Color : Jaune
+
+
+
+ mass, x, y, dx, dy, radius, color):
+
+    sun = Planet(75, H_WIDTH, H_WIDTH, 0, 0, 15, YELLOW)
+    mercury = Planet(2, H_WIDTH - 50, H_WIDTH, 0, 1, 1, ORANGE)
+    venus = Planet(2, H_WIDTH - 75, H_WIDTH, 0, 1, 2, ORANGE)
+    earth = Planet(2, H_WIDTH - 100, H_WIDTH, 0, 1, 1, BLUE)
+    mars = Planet(4, H_WIDTH - 125, H_WIDTH, 0, 1, 1, RED)
+    jupiter = Planet(10, H_WIDTH - 150, H_WIDTH, 0, 1, 7, JUPITER)
+    saturn = Planet(10, H_WIDTH - 185, H_WIDTH, 0, 1, 6, GRAY)
+    uranus = Planet(9, H_WIDTH - 220, H_WIDTH, 0, 1, 5, URANUS)
+    neptune = Planet(9, H_WIDTH - 250, H_WIDTH, 0, 1, 5, PURPLE)
