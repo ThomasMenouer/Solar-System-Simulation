@@ -115,7 +115,20 @@ class Simulation:
 
 
     def update(self):
+
         # Calculate forces
+        '''self.sun.force = self.gforce(self.sun, self.comet)
+        for p in self.planets:
+            self.sun.force += self.gforce(self.sun, p)
+            p.force = self.gforce(p, self.sun)
+
+            # Si commenter la comète fonctionne
+            for next_p in self.planets:
+                try:
+                    p.force += self.gforce(p, next_p)
+                except ValueError:
+                    pass'''
+
 
         self.sun.force = self.gforce(self.sun, self.earth) \
                          + self.gforce(self.sun, self.mercury) \
@@ -191,6 +204,8 @@ class Simulation:
                            + self.gforce(self.comet, self.jupiter) \
                            + self.gforce(self.comet, self.saturn) \
 
+
+
         # Calculate velocity
         for p in self.planets:
             # Calculate velocity
@@ -213,17 +228,11 @@ class Simulation:
         for p in self.planets:
             self.draw(screen, p)
 
-            # We catch the error of the comet cause I don't want to have an image
+            # We catch the error of the comet because I don't want to have an image
             try:
                 screen.blit(p.image, p.rect)
             except AttributeError:
-                pygame.draw.circle(screen,
-                                   p.getColor(),
-                                   p.getVec_pos(), 
-                                   p.getRadius())
-
-
-
+                pygame.draw.circle(screen,p.getColor(),p.getVec_pos(), p.getRadius())
         pygame.display.flip()
 
     def run(self):
@@ -236,7 +245,7 @@ class Simulation:
     def draw(self, screen, planetOrStar):
 
         # pygame.draw.circle(screen, planetOrStar.getColor(), planetOrStar.getVec_pos(), planetOrStar.getRadius())
-        # We have an error because the Sun and the comet is include, but he doesn't need a trail, so we catch it
+        # We have an error because the Sun and the comet is included, but he doesn't need a trail, so we catch it
         try:
             for pos in planetOrStar.trail:
                 pygame.draw.line(screen, planetOrStar.getColor(), pos, pos, 1)
