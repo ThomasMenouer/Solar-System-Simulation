@@ -12,35 +12,36 @@ class Simulation:
         self.screen = screen
         self.t = 0
         self.dt = 1
+
         self.G = 1  # Change to 6.67e-11 to use real-world values.
         self.running = True
         self.clock = pygame.time.Clock()
 
         # Star : Name, color, radius, mass, position, velocity
-        self.sun = Star("Sun", colors.YELLOW, 20, 1.989e30 / scale_mass, (screenWidthHalf, screenHeightHalf))
+        self.sun = Star("Sun", colors.YELLOW, 20, 1.989e30 / scale_mass, (screen_width_half, screen_height_half))
 
         # Planet : Name, color, radius, mass, position, velocity, has_ring
         self.mercury = Planet("Mercury", colors.GRAY, 2, 3.285e23 / scale_mass,
-                              (screenWidthHalf - 58, screenHeightHalf), (0, 0))
+                              (screen_width_half - 58, screen_height_half), (0, 0))
 
         self.venus = Planet("Venus", colors.YELLOW_ORANGE, 5, 4.867e24 / scale_mass,
-                            (screenWidthHalf - 108, screenHeightHalf), (0, 0))
-        self.earth = Planet("Earth", colors.BLUE, 5, 5.972e24 / scale_mass, (screenWidthHalf - 149.6, screenHeightHalf),
+                            (screen_width_half - 108, screen_height_half), (0, 0))
+        self.earth = Planet("Earth", colors.BLUE, 5, 5.972e24 / scale_mass, (screen_width_half - 149.6, screen_height_half),
                             (0, 0))
-        self.mars = Planet("Mars", colors.RED, 4, 6.89e23 / scale_mass, (screenWidthHalf - 228, screenHeightHalf),
+        self.mars = Planet("Mars", colors.RED, 4, 6.89e23 / scale_mass, (screen_width_half - 228, screen_height_half),
                            (0, 0))
 
         self.jupiter = Planet("Jupiter", colors.CAMEO, 10, 1.898e27 / scale_mass,
-                              (screenWidthHalf - 778, screenHeightHalf), (0, 0))
+                              (screen_width_half - 778, screen_height_half), (0, 0))
 
         self.saturn = Planet("Saturn", colors.SATURN, 9, 5.683e26 / scale_mass,
-                             (screenWidthHalf - 900, screenHeightHalf), (0, 0))
+                             (screen_width_half - 900, screen_height_half), (0, 0))
 
         # self.moon = Planet("Moon", colors.WHITE, 1, 7.6e22 / scale_mass,
-        # (screenWidthHalf - 151, screenHeightHalf), (0, 0))
+        # (screen_width_half - 151, screen_height_half), (0, 0))
 
         # self.phobos = Planet("Phobos", colors.WHITE, 1, 1.072e16 / scale_mass,
-                            # (screenWidthHalf - 228 - 6, screenHeightHalf), (0, 0))
+                            # (screen_width_half - 228 - 6, screen_height_half), (0, 0))
 
 
         """
@@ -50,7 +51,7 @@ class Simulation:
         # Comet : color, radius, mass, position, velocity
         self.comet = Comet("Halley", colors.WHITE, 1, 2.2e14 / scale_mass, (0, 0), (0, 0))
 
-        # Comet isn't a planet but this is more easier to code if we include in it
+        # Comet isn't a planet but this is easier to code if we include in it
         self.planets = [self.mercury, self.venus, self.earth, self.mars, self.jupiter, self.saturn]
 
         # We initialize their trail and their initial velocity
@@ -311,17 +312,14 @@ pygame.init()
 scale_mass = 10e27
 scale = 149_600_000 / 250
 
-# Set the width and height of the screen [width, height]
-screenWidth = 1980
-screenHeight = 1080
+info = pygame.display.Info()
+screen_width, screen_height = info.current_w, info.current_h
 # we divide by 2 to have the center of the screen and then place the sun on it
-screenWidthHalf = screenWidth // 2
-screenHeightHalf = screenHeight // 2
-
-size = (screenWidth, screenHeight)
+screen_width_half = screen_width // 2
+screen_height_half = screen_height // 2
 
 background = pygame.image.load("images/background.jpg")
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Solar System Simulation")
 
 simulation = Simulation(screen)
